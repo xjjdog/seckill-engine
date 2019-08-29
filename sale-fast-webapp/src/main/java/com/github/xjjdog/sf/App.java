@@ -1,27 +1,23 @@
 package com.github.xjjdog.sf;
 
 
+import com.spring4all.swagger.EnableSwagger2Doc;
 import lombok.extern.slf4j.Slf4j;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
-import redis.embedded.RedisServer;
 
-@SpringBootApplication
-@EnableAutoConfiguration
-@ComponentScan(basePackageClasses = {})
-//@MapperScan(basePackages = "")
 @Slf4j
+@EnableSwagger2Doc
+@SpringBootApplication
 public class App {
+
     public static void main(String[] args) throws Exception {
-        RedisServer redisServer = new RedisServer(6379);
-        redisServer.start();
+//        RedisServer redisServer = new RedisServer(6379);
+//        redisServer.start();
 
         SpringApplication.run(App.class, args);
         log.info("=================App Started=====================");
-
+        log.info("=================asdadasdasxxxxx=====================");
 //        redisServer.stop();
     }
 }
