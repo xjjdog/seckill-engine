@@ -1,0 +1,23 @@
+${AnsiColor.BRIGHT_GREEN}
+                    .::::.
+                  .::::::::.
+                 :::::::::::
+              ..:::::::::::'
+           '::::::::::::'
+             .::::::::::
+        '::::::::::::::..
+             ..::::::::::::.
+           ``::::::::::::::::
+            ::::``:::::::::'        .:::.
+           ::::'   ':::::'       .::::::::.
+         .::::'      ::::     .:::::::'::::.
+        .:::'       :::::  .:::::::::' ':::::.
+       .::'        :::::.:::::::::'      ':::::.
+      .::'         ::::::::::::::'         ``::::.
+  ...:::           ::::::::::::'              ``::.
+ ```` ':.          ':::::::::'                  ::::..
+                    '.:::::'                    ':'````..
+
+${AnsiColor.BRIGHT_RED}
+Application Version: ${application.version}${application.formatted-version}
+Spring Boot Version: ${AnsiColor.BRIGHT_YELLOW}${spring-boot.version}${spring-boot.formatted-version} ${AnsiColor.BRIGHT_MAGENTA}::
