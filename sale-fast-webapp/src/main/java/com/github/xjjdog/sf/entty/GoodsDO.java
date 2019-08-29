@@ -13,7 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @TableName("sf_goods")
-public class Goods extends IDAutoEntity<Goods> {
+public class GoodsDO extends IDAutoEntity<GoodsDO> {
     @TableField("id")
     private Long id;
     @TableField("name")
