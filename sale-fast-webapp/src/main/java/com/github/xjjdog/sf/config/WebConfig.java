@@ -33,8 +33,7 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public HttpMessageConverters fastJsonHttpMessageConverters() {
-        FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
+    public HttpMessageConverters fastJsonHttpMessageConverters(FastJsonHttpMessageConverter fastConverter) {
         FastJsonConfig fastJsonConfig = new FastJsonConfig();
         fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat, SerializerFeature.WriteDateUseDateFormat);
         fastConverter.setFastJsonConfig(fastJsonConfig);

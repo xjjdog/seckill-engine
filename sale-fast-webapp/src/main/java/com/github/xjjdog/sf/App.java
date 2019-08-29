@@ -17,7 +17,6 @@ public class App {
 
         SpringApplication.run(App.class, args);
         log.info("=================App Started=====================");
-        log.info("=================asdadasdasxxxxx=====================");
 //        redisServer.stop();
     }
 }
