@@ -10,6 +10,7 @@
     <version>1.0.0</version>
     <modules>
         <module>sale-fast-webapp</module>
+        <module>sale-fast-core</module>
     </modules>
 
 
