@@ -4,17 +4,19 @@ import com.github.xjjdog.sf.core.entity.RuntimeUnit;
 import com.github.xjjdog.sf.core.target.Target;
 
 import java.util.HashMap;
+import java.util.Properties;
 
 public class StockServiceMock implements StockService {
-    /**
-     * 配置参数
-     */
-    HashMap<String, Target> targetHashMap = new HashMap<>();
     /**
      * 运行时实体
      * 模拟分布式初始化锁
      */
     HashMap<String, RuntimeUnit> runtimeUnitHashMap = new HashMap<>();
+
+    @Override
+    public void configure(Properties properties) {
+
+    }
 
     @Override
     public synchronized int stockNumber(Target target) {
@@ -63,5 +65,11 @@ public class StockServiceMock implements StockService {
             runtime.setStock(target.getStock());
             runtimeUnitHashMap.putIfAbsent(tagertID, runtime);
         }
+    }
+
+    @Override
+    public void cleanup(Target target) {
+        final String tagertID = target.getId();
+        runtimeUnitHashMap.remove(tagertID);
     }
 }
