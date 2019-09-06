@@ -5,6 +5,9 @@ import com.github.xjjdog.sf.core.target.Target;
 import java.util.Properties;
 
 public interface StockService {
+    /**
+     * 配置接口
+     */
     void configure(Properties properties);
 
     /**

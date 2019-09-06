@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import redis.embedded.RedisServer;
 
 import java.util.Properties;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -47,6 +48,7 @@ public class TestStockServiceRedis {
         stockService.configure(properties);
 
         target = new Target();
+        target.setId(UUID.randomUUID().toString());
         target.setStock(initStock);
     }
 

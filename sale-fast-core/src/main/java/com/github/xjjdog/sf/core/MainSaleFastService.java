@@ -2,17 +2,18 @@ package com.github.xjjdog.sf.core;
 
 import com.github.xjjdog.sf.core.components.stock.StockService;
 import com.github.xjjdog.sf.core.entity.ActionSell;
-import com.github.xjjdog.sf.core.components.stock.StockServiceMock;
 import com.github.xjjdog.sf.core.entity.Result;
 import com.github.xjjdog.sf.core.target.Target;
 
 import java.util.concurrent.TimeUnit;
 
-public abstract class MainSaleFastService {
+public class MainSaleFastService {
+
+
     /**
      * 专职负责库存
      */
-    StockService stockService = new StockServiceMock();
+    StockService stockService;
 
     /**
      * 售卖动作
