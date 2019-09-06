@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.xjjdog</groupId>
-    <artifactId>sale-fast</artifactId>
+    <artifactId>seckill-engine</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0</version>
     <modules>
-        <module>sale-fast-webapp</module>
-        <module>sale-fast-core</module>
+        <module>seckill-engine-core</module>
+        <module>seckill-engine-springboot-demo</module>
     </modules>
 
 
