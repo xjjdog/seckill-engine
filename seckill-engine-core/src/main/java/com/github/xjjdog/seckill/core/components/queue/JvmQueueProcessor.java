@@ -1,20 +1,31 @@
 package com.github.xjjdog.seckill.core.components.queue;
 
+import com.github.xjjdog.seckill.core.components.stock.StockService;
 import com.github.xjjdog.seckill.core.entity.ActionSell;
 import com.github.xjjdog.seckill.core.target.Target;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+@Slf4j
 public class JvmQueueProcessor implements QueueProcessor {
     private Map<String, AtomicInteger> queueStorage;
     private LinkedBlockingQueue queue;
     private volatile boolean running = false;
 
+
+    StockService stockService;
+
     ThreadPoolExecutor threadPool = new ThreadPoolExecutor(
             10, 10, 1, TimeUnit.MINUTES, new LinkedBlockingQueue<>()
     );
+
+
+    public JvmQueueProcessor(StockService stockService) {
+        this.stockService = stockService;
+    }
 
     /**
      * 缓存数据实体
@@ -31,15 +42,25 @@ public class JvmQueueProcessor implements QueueProcessor {
 
     @Override
     public void start() throws Exception {
+        if (running) {
+            throw new RuntimeException("can not start it twice");
+        }
         queueStorage = new ConcurrentHashMap<>();
         queue = new LinkedBlockingQueue();
         this.running = true;
 
-        this.consumer();
+        new Thread(() -> {
+            try {
+                this.consumer();
+            } catch (Exception e) {
+                log.error("", e);
+            }
+        }).start();
     }
 
     @Override
     public void stop() throws Exception {
+        this.running = false;
         threadPool.shutdown();
     }
 
@@ -48,12 +69,18 @@ public class JvmQueueProcessor implements QueueProcessor {
         String id = target.getId();
         AtomicInteger counter = queueStorage.get(id);
         if (null == counter) {
-            counter = queueStorage.putIfAbsent(id, new AtomicInteger());
+            AtomicInteger aim = new AtomicInteger();
+            AtomicInteger yes = queueStorage.putIfAbsent(id, aim);
+            if (null == yes) {
+                counter = aim;
+            } else {
+                counter = yes;
+            }
         }
-        if (counter.get() >= target.getQueueSize()) {
+        if (counter.get() + sell.getCount() > target.getQueueSize()) {
             return false;
         }
-        counter.getAndIncrement();
+        counter.getAndAdd(sell.getCount());
         queue.put(new Pair(target, sell));
         return true;
     }
@@ -61,11 +88,11 @@ public class JvmQueueProcessor implements QueueProcessor {
     @Override
     public void consumer() throws Exception {
         while (running) {
-            Pair pair = (Pair) queue.poll();
+            final Pair pair = (Pair) queue.take();
             threadPool.execute(new Runnable() {
                 @Override
                 public void run() {
-                    //TODO
+                    stockService.subStockNumber(pair.target, pair.sell.getCount());
                 }
             });
         }

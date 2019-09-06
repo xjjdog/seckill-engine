@@ -1,6 +1,7 @@
-package com.github.xjjdog.seckill.core;
+package com.github.xjjdog.seckill.core.stock;
 
 
+import com.github.xjjdog.seckill.core.Factory;
 import com.github.xjjdog.seckill.core.components.stock.StockService;
 import com.github.xjjdog.seckill.core.components.stock.StockServiceRedis;
 import com.github.xjjdog.seckill.core.target.Target;
@@ -10,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import redis.embedded.RedisServer;
 
 import java.util.Properties;
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -22,10 +22,6 @@ public class TestStockServiceRedis {
 
     static String PropsPrefix = "p";
     static String RedisPrefix = "dog:";
-
-    static Target target;
-
-    static int initStock = 100;
 
     @BeforeAll
     public static void start() throws Exception {
@@ -47,9 +43,6 @@ public class TestStockServiceRedis {
 
         stockService.configure(properties);
 
-        target = new Target();
-        target.setId(UUID.randomUUID().toString());
-        target.setStock(initStock);
     }
 
     @AfterAll
@@ -60,15 +53,23 @@ public class TestStockServiceRedis {
     }
 
     @Test
-    public void testStockNumber() {
+    public void testStockNumber() throws Exception {
+        Target target = Factory.getTarget();
+        int initStock = Factory.InitStock;
+
         stockService.fillStock(target);
         int stock = stockService.stockNumber(target);
         assertEquals(stock, initStock);
+
+
         stockService.cleanup(target);
     }
 
     @Test
     public void testIncStockNumber() {
+        Target target = Factory.getTarget();
+        int initStock = Factory.InitStock;
+
         stockService.fillStock(target);
         boolean result = stockService.incStockNumber(target, 2);
         assertEquals(true, result);
@@ -79,6 +80,9 @@ public class TestStockServiceRedis {
 
     @Test
     public void testSubStockNumber() {
+        Target target = Factory.getTarget();
+        int initStock = Factory.InitStock;
+
         stockService.fillStock(target);
         boolean result = stockService.subStockNumber(target, 2);
         assertEquals(true, result);
