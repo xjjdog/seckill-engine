@@ -5,7 +5,6 @@ import com.github.xjjdog.seckill.core.components.queue.JvmQueueProcessor;
 import com.github.xjjdog.seckill.core.components.queue.QueueProcessor;
 import com.github.xjjdog.seckill.core.components.stock.StockService;
 import com.github.xjjdog.seckill.core.components.stock.StockServiceMock;
-import com.github.xjjdog.seckill.core.components.stock.StockServiceRedis;
 import com.github.xjjdog.seckill.core.entity.ActionSell;
 import com.github.xjjdog.seckill.core.target.Target;
 import lombok.extern.slf4j.Slf4j;
@@ -17,9 +16,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
 public class TestJvmQueueProcessor {
-    static String PropsPrefix = "p";
-    static String RedisPrefix = "dog:";
-
     static StockService stockService;
     static QueueProcessor queueProcessor;
 

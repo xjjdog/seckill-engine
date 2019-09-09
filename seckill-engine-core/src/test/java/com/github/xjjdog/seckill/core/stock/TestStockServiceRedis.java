@@ -20,7 +20,7 @@ public class TestStockServiceRedis {
     static StockService stockService;
 
 
-    static String PropsPrefix = "p";
+    static String PropsPrefix = "p.";
     static String RedisPrefix = "dog:";
 
     @BeforeAll

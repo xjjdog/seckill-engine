@@ -1,7 +1,8 @@
 package com.github.xjjdog.seckill.core.components.stock;
 
-import com.github.xjjdog.seckill.core.components.stock.redis.RedisConfigx;
+import com.github.xjjdog.seckill.core.components.stock.redis.Config;
 import com.github.xjjdog.seckill.core.target.Target;
+import com.github.xjjdog.seckill.core.util.PropertiesToBean;
 import lombok.extern.slf4j.Slf4j;
 import redis.clients.jedis.*;
 
@@ -57,40 +58,17 @@ public class StockServiceRedis implements StockService {
 
     @Override
     public void configure(Properties properties) {
-        final RedisConfigx config = new RedisConfigx();
-        final JedisPoolConfig poolConfig = new JedisPoolConfig();
-        config.setPoolConfig(poolConfig);
+        Config config = new Config();
         try {
-            BeanInfo beanInfo = Introspector.getBeanInfo(RedisConfigx.class);
-            for (PropertyDescriptor desc : beanInfo.getPropertyDescriptors()) {
-                if (desc.getPropertyType().equals(JedisPoolConfig.class)) {
-
-                    BeanInfo beanInfoLvl2 = Introspector.getBeanInfo(JedisPoolConfig.class);
-                    for (PropertyDescriptor descLvl2 : beanInfoLvl2.getPropertyDescriptors()) {
-                        final String name = descLvl2.getName();
-                        final Object value = properties.get(propsPrefix + "poolConfig." + name);
-                        if (null != value && !"".equals(value)) {
-                            Method method = descLvl2.getWriteMethod();
-                            method.invoke(poolConfig, value);
-                        }
-                    }
-                } else {
-                    final String name = desc.getName();
-                    final Object value = properties.get(propsPrefix + name);
-                    if (null != value && !"".equals(value)) {
-                        Method method = desc.getWriteMethod();
-                        method.invoke(config, value);
-                    }
-                }
-            }
-        } catch (Exception e) {
+            PropertiesToBean.toBean(propsPrefix, properties, config);
+        } catch (Exception ex) {
             log.error("error while config redis . pls check it !!");
         }
 
         isCluster = false;
 
         switch (config.getMode().toLowerCase()) {
-            case RedisConfigx.REDIS_MODE_SINGLE: {
+            case Config.REDIS_MODE_SINGLE: {
                 final String[] parts = config.getEndpoint().split(":");
                 if (parts.length != 2) {
                     throw new RuntimeException("okmq:redis:config error: ex: 127.0.0.1:6379");
@@ -103,7 +81,7 @@ public class StockServiceRedis implements StockService {
             }
             break;
 
-            case RedisConfigx.REDIS_MODE_SENTINEL: {
+            case Config.REDIS_MODE_SENTINEL: {
                 final String[] parts = config.getEndpoint().split(",");
 
                 Set<String> hostAndPorts = Arrays.stream(parts)
@@ -115,7 +93,7 @@ public class StockServiceRedis implements StockService {
             }
             break;
 
-            case RedisConfigx.REDIS_MODE_CLUSTER: {
+            case Config.REDIS_MODE_CLUSTER: {
                 final String[] parts = config.getEndpoint().split(",");
                 Set<HostAndPort> hostAndPorts = Arrays.stream(parts)
                         .map(item -> item.split(":"))

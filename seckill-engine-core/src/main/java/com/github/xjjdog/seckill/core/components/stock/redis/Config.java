@@ -6,7 +6,7 @@ import redis.clients.jedis.JedisPoolConfig;
 
 @Getter
 @Setter
-public class RedisConfigx {
+public class Config {
 
     public static final String REDIS_MODE_SINGLE = "single";
     public static final String REDIS_MODE_SENTINEL = "sentinel";

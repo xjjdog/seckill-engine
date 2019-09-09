@@ -65,6 +65,11 @@
                 <artifactId>hsqldb</artifactId>
                 <version>${hsqldb.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.apache.kafka</groupId>
+                <artifactId>kafka-clients</artifactId>
+                <version>2.3.0</version>
+            </dependency>
 
             <dependency>
                 <groupId>com.h2database</groupId>
@@ -77,6 +82,12 @@
                 <artifactId>embedded-redis</artifactId>
                 <version>0.6</version>
             </dependency>
+            <dependency>
+                <groupId>com.github.charithe</groupId>
+                <artifactId>kafka-junit</artifactId>
+                <version>4.1.6</version>
+            </dependency>
+
 
 
             <dependency>
