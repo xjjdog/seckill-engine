@@ -1,7 +1,7 @@
 package com.github.xjjdog.seckill.core.queue;
 
 import com.github.xjjdog.seckill.core.Factory;
-import com.github.xjjdog.seckill.core.components.queue.JvmQueueProcessor;
+import com.github.xjjdog.seckill.core.components.queue.QeueProcessorJvm;
 import com.github.xjjdog.seckill.core.components.queue.QueueProcessor;
 import com.github.xjjdog.seckill.core.components.stock.StockService;
 import com.github.xjjdog.seckill.core.components.stock.StockServiceMock;
@@ -15,14 +15,14 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
-public class TestJvmQueueProcessor {
+public class TestQueueProcessorJvm {
     static StockService stockService;
     static QueueProcessor queueProcessor;
 
     @BeforeAll
     public static void start() throws Exception {
         stockService = new StockServiceMock();
-        queueProcessor = new JvmQueueProcessor(stockService);
+        queueProcessor = new QeueProcessorJvm(stockService);
         queueProcessor.start();
     }
 

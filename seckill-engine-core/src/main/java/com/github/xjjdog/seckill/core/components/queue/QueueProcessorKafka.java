@@ -11,7 +11,7 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import java.util.Properties;
 
 @Slf4j
-public class KafkaQueueProcessor implements QueueProcessor {
+public class QueueProcessorKafka implements QueueProcessor {
     Producer producer;
     Consumer consumer;
     String topic;

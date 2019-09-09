@@ -7,7 +7,7 @@ import com.github.xjjdog.seckill.core.target.Target;
 
 import java.util.concurrent.TimeUnit;
 
-public class MainSaleFastService {
+public class Engine {
 
 
     /**

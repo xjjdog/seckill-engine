@@ -10,7 +10,7 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Slf4j
-public class JvmQueueProcessor implements QueueProcessor {
+public class QeueProcessorJvm implements QueueProcessor {
     private Map<String, AtomicInteger> queueStorage;
     private LinkedBlockingQueue queue;
     private volatile boolean running = false;
@@ -23,7 +23,7 @@ public class JvmQueueProcessor implements QueueProcessor {
     );
 
 
-    public JvmQueueProcessor(StockService stockService) {
+    public QeueProcessorJvm(StockService stockService) {
         this.stockService = stockService;
     }
 
