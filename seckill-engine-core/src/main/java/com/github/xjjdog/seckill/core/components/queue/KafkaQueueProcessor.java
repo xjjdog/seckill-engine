@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
+import org.apache.kafka.clients.producer.ProducerRecord;
 
 import java.util.Properties;
 
@@ -13,6 +14,7 @@ import java.util.Properties;
 public class KafkaQueueProcessor implements QueueProcessor {
     Producer producer;
     Consumer consumer;
+    String topic;
 
     public void configure(Properties properties) {
         producer = new KafkaProducer(properties);
@@ -32,6 +34,7 @@ public class KafkaQueueProcessor implements QueueProcessor {
 
     @Override
     public boolean producer(Target target, ActionSell sell) throws Exception {
+        ProducerRecord<String, String> record = new ProducerRecord<String, String>(topic, "");
         return false;
     }
 

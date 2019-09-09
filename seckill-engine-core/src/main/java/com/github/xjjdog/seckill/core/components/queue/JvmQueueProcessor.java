@@ -27,19 +27,6 @@ public class JvmQueueProcessor implements QueueProcessor {
         this.stockService = stockService;
     }
 
-    /**
-     * 缓存数据实体
-     */
-    class Pair {
-        Target target;
-        ActionSell sell;
-
-        Pair(Target target, ActionSell sell) {
-            this.target = target;
-            this.sell = sell;
-        }
-    }
-
     @Override
     public void start() throws Exception {
         if (running) {
@@ -81,14 +68,14 @@ public class JvmQueueProcessor implements QueueProcessor {
             return false;
         }
         counter.getAndAdd(sell.getCount());
-        queue.put(new Pair(target, sell));
+        queue.put(new Entry(target, sell));
         return true;
     }
 
     @Override
     public void consumer() throws Exception {
         while (running) {
-            final Pair pair = (Pair) queue.take();
+            final Entry pair = (Entry) queue.take();
             threadPool.execute(new Runnable() {
                 @Override
                 public void run() {
