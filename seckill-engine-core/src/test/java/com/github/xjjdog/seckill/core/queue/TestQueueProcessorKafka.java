@@ -2,10 +2,8 @@ package com.github.xjjdog.seckill.core.queue;
 
 import com.github.xjjdog.seckill.core.Factory;
 import com.github.xjjdog.seckill.core.Holder;
-import com.github.xjjdog.seckill.core.components.queue.QueueProcessor;
 import com.github.xjjdog.seckill.core.components.queue.QueueProcessorKafka;
 import com.github.xjjdog.seckill.core.components.stock.StockService;
-import com.github.xjjdog.seckill.core.components.stock.StockServiceMock;
 import com.github.xjjdog.seckill.core.entity.ActionSell;
 import com.github.xjjdog.seckill.core.target.Target;
 import lombok.extern.slf4j.Slf4j;
@@ -13,21 +11,24 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 
 import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
+/**
+ * kafka test case not running for junit .
+ */
 public class TestQueueProcessorKafka {
+    public static void main(String[] args) throws Exception {
+        test();
+    }
+
     static StockService stockService;
     static QueueProcessorKafka queueProcessor;
 
-    @BeforeAll
-    public static void start() throws Exception {
+    public static void test() throws Exception {
         Properties properties = new Properties();
         properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         properties.put(ProducerConfig.CLIENT_ID_CONFIG, "localhost");
@@ -51,15 +52,7 @@ public class TestQueueProcessorKafka {
         queueProcessor.configure(properties);
         queueProcessor.setTopic("test-seckill");
         queueProcessor.start();
-    }
 
-    @AfterAll
-    public static void stop() throws Exception {
-        queueProcessor.stop();
-    }
-
-    @Test
-    public void testProducer() throws Exception {
         Target target = Holder.getInstance().getTargetService().getTarget("1");
         int initStock = Factory.InitStock;
         ActionSell actionSell = new ActionSell();
@@ -83,5 +76,6 @@ public class TestQueueProcessorKafka {
         result = queueProcessor.producer(target, actionSell);
         assertEquals(result, false);
 
+        System.exit(-1);
     }
 }

@@ -9,7 +9,7 @@ public class TargetStoreMock implements TargetStore {
     @Override
     public Target getTarget(String targetID) {
         Target target = new Target();
-        target.setId(UUID.randomUUID().toString());
+        target.setId("1");
         target.setStock(InitStock);
         target.setQueueSize(QueueSize);
 
