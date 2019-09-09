@@ -1,10 +1,10 @@
 package com.github.xjjdog.seckill.core.queue;
 
 import com.github.xjjdog.seckill.core.Factory;
+import com.github.xjjdog.seckill.core.Holder;
 import com.github.xjjdog.seckill.core.components.queue.QeueProcessorJvm;
 import com.github.xjjdog.seckill.core.components.queue.QueueProcessor;
 import com.github.xjjdog.seckill.core.components.stock.StockService;
-import com.github.xjjdog.seckill.core.components.stock.StockServiceMock;
 import com.github.xjjdog.seckill.core.entity.ActionSell;
 import com.github.xjjdog.seckill.core.target.Target;
 import lombok.extern.slf4j.Slf4j;
@@ -21,8 +21,8 @@ public class TestQueueProcessorJvm {
 
     @BeforeAll
     public static void start() throws Exception {
-        stockService = new StockServiceMock();
-        queueProcessor = new QeueProcessorJvm(stockService);
+        stockService = Holder.getInstance().getStockService();
+        queueProcessor = new QeueProcessorJvm();
         queueProcessor.start();
     }
 
@@ -33,7 +33,7 @@ public class TestQueueProcessorJvm {
 
     @Test
     public void testProducer() throws Exception {
-        Target target = Factory.getTarget();
+        Target target = Holder.getInstance().getTargetService().getTarget("1");
         int initStock = Factory.InitStock;
         ActionSell actionSell = new ActionSell();
         actionSell.setCount(10);
@@ -44,8 +44,8 @@ public class TestQueueProcessorJvm {
 
 
         //wait to consumer
-        int stockNumber = stockService.stockNumber(target);
         Thread.sleep(1000);
+        int stockNumber = stockService.stockNumber(target);
         assertEquals(Factory.InitStock - 10, stockNumber);
 
         stockService.cleanup(target);

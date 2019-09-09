@@ -10,9 +10,7 @@ import com.google.common.cache.LoadingCache;
 import java.util.concurrent.TimeUnit;
 
 public class TargetService {
-    //TODO 此部分会被装配
-    TargetStore targetStore = new TargetStoreMock();
-
+    private TargetStore targetStore = new TargetStoreMock();
     private LoadingCache<String, Target> caches = CacheBuilder.newBuilder()
             .maximumSize(1000)
             .expireAfterWrite(1, TimeUnit.DAYS)

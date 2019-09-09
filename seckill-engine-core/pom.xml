@@ -37,11 +37,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.charithe</groupId>
-            <artifactId>kafka-junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
             <scope>provided</scope>
