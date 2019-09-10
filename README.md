@@ -1,3 +1,7 @@
+# 架构类基础知识看这里 https://github.com/xjjdog/javaok
+
+
+
 概念抽象：
 
 ## actor 秒杀参与者  
