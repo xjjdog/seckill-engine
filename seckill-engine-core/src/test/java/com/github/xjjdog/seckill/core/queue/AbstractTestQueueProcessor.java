@@ -2,7 +2,6 @@ package com.github.xjjdog.seckill.core.queue;
 
 import com.github.xjjdog.seckill.core.Factory;
 import com.github.xjjdog.seckill.core.Holder;
-import com.github.xjjdog.seckill.core.components.queue.QeueProcessorJvm;
 import com.github.xjjdog.seckill.core.components.queue.QueueProcessor;
 import com.github.xjjdog.seckill.core.components.stock.StockService;
 import com.github.xjjdog.seckill.core.entity.ActionSell;
@@ -13,15 +12,19 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
-public class AbstractTestQueueProcessor {
+public abstract class AbstractTestQueueProcessor {
     protected StockService stockService;
     protected QueueProcessor queueProcessor;
+
+    protected abstract QueueProcessor getQueueProcessor();
+
+    protected abstract StockService getStockService();
 
     @Test
     public void testProducer() throws Exception {
 
-        stockService = Holder.getInstance().getStockService();
-        queueProcessor = new QeueProcessorJvm();
+        stockService = this.getStockService();
+        queueProcessor = this.getQueueProcessor();
         queueProcessor.start();
 
 
