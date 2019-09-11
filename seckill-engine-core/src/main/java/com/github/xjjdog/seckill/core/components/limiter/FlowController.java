@@ -40,7 +40,6 @@ class FlowController {
     public boolean acquire(int permits) {
         boolean success = rateLimiter.tryAcquire(permits);
         if (success) {
-            rateLimiter.acquire(permits);
             return true;
         }
         if (waitingRequests.get() > maxWaitingRequests) {
