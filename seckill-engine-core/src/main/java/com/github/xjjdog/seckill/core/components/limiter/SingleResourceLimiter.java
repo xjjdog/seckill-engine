@@ -10,13 +10,13 @@ public class SingleResourceLimiter {
     /**
      * 支持单机1万资源的访问控制管理
      */
-    static LoadingCache<String, FollowController> caches = CacheBuilder.newBuilder()
+    static LoadingCache<String, FlowController> caches = CacheBuilder.newBuilder()
             .maximumSize(10000)
             .expireAfterWrite(1, TimeUnit.HOURS)
-            .build(new CacheLoader<String, FollowController>() {
+            .build(new CacheLoader<String, FlowController>() {
                 @Override
-                public FollowController load(String key) {
-                    return new FollowController(5, 0);
+                public FlowController load(String key) {
+                    return new FlowController(5, 0);
                 }
             });
 

@@ -9,12 +9,10 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 原理在这里，我专门写了一篇文章介绍guava的使用 <br/>
  * 高并发之限流，到底限的什么鬼 （精品长文）： https://mp.weixin.qq.com/s/UEy272RDQ2-Ygxn3W4x7IA
  */
-class FollowController {
+class FlowController {
     private final RateLimiter rateLimiter;
 
     private int maxPermits;
-
-    private Object mutex = new Object();
 
     /**
      * 等待获取permits的请求个数，原则上可以通过maxPermits推算
@@ -23,13 +21,13 @@ class FollowController {
 
     private AtomicInteger waitingRequests = new AtomicInteger(0);
 
-    public FollowController(int maxPermits, int maxWaitingRequests) {
+    public FlowController(int maxPermits, int maxWaitingRequests) {
         this.maxPermits = maxPermits;
         this.maxWaitingRequests = maxWaitingRequests;
         this.rateLimiter = RateLimiter.create(maxPermits);
     }
 
-    public FollowController(int permits, long warmUpPeriodAsSecond, int maxWaitingRequests) {
+    public FlowController(int permits, long warmUpPeriodAsSecond, int maxWaitingRequests) {
         this.maxPermits = maxPermits;
         this.maxWaitingRequests = maxWaitingRequests;
         this.rateLimiter = RateLimiter.create(permits, warmUpPeriodAsSecond, TimeUnit.SECONDS);
