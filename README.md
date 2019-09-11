@@ -1,3 +1,5 @@
+# 项目未成型，感兴趣watch追踪进度
+
 # 架构类基础知识看这里 https://github.com/xjjdog/javaok
 
 
