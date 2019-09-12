@@ -12,8 +12,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 class FlowController {
     private final RateLimiter rateLimiter;
 
-    private int maxPermits;
-
     /**
      * 等待获取permits的请求个数，原则上可以通过maxPermits推算
      */
@@ -22,13 +20,11 @@ class FlowController {
     private AtomicInteger waitingRequests = new AtomicInteger(0);
 
     public FlowController(int maxPermits, int maxWaitingRequests) {
-        this.maxPermits = maxPermits;
         this.maxWaitingRequests = maxWaitingRequests;
         this.rateLimiter = RateLimiter.create(maxPermits);
     }
 
     public FlowController(int permits, long warmUpPeriodAsSecond, int maxWaitingRequests) {
-        this.maxPermits = maxPermits;
         this.maxWaitingRequests = maxWaitingRequests;
         this.rateLimiter = RateLimiter.create(permits, warmUpPeriodAsSecond, TimeUnit.SECONDS);
     }
@@ -42,7 +38,7 @@ class FlowController {
         if (success) {
             return true;
         }
-        if (waitingRequests.get() > maxWaitingRequests) {
+        if (waitingRequests.get() >= maxWaitingRequests) {
             return false;
         }
         waitingRequests.getAndAdd(permits);

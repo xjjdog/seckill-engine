@@ -1,21 +1,18 @@
-package com.github.xjjdog.seckill.core.queue;
+package com.github.xjjdog.seckill.core.components.queue;
 
 import com.github.xjjdog.seckill.core.Holder;
-import com.github.xjjdog.seckill.core.components.queue.QeueProcessorJvm;
-import com.github.xjjdog.seckill.core.components.queue.QueueProcessor;
 import com.github.xjjdog.seckill.core.components.stock.StockService;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class TestQueueProcessorJvm extends AbstractTestQueueProcessor {
+public class QueueProcessorDisruptorTest extends QueueProcessorJvmTest {
     @Override
     protected QueueProcessor getQueueProcessor() {
-        return new QeueProcessorJvm();
+        return new QeueProcessorDisruptor();
     }
 
     @Override
     protected StockService getStockService() {
         return Holder.getInstance().getStockService();
     }
-
 }

@@ -1,4 +1,4 @@
-package com.github.xjjdog.seckill.core.queue;
+package com.github.xjjdog.seckill.core.components.queue;
 
 import com.github.xjjdog.seckill.core.Factory;
 import com.github.xjjdog.seckill.core.Holder;
@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * kafka test case not running for junit .
  */
-public class TestQueueProcessorKafka {
+public class QueueProcessorKafkaTest {
     public static void main(String[] args) throws Exception {
         test();
     }

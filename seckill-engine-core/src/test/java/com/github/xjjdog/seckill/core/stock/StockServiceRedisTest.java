@@ -14,7 +14,7 @@ import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestStockServiceRedis {
+public class StockServiceRedisTest {
     static RedisServer redisServer;
 
     static StockService stockService;

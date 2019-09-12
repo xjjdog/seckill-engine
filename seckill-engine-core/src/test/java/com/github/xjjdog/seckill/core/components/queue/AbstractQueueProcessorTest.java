@@ -1,8 +1,7 @@
-package com.github.xjjdog.seckill.core.queue;
+package com.github.xjjdog.seckill.core.components.queue;
 
 import com.github.xjjdog.seckill.core.Factory;
 import com.github.xjjdog.seckill.core.Holder;
-import com.github.xjjdog.seckill.core.components.queue.QueueProcessor;
 import com.github.xjjdog.seckill.core.components.stock.StockService;
 import com.github.xjjdog.seckill.core.entity.ActionSell;
 import com.github.xjjdog.seckill.core.target.Target;
@@ -12,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
-public abstract class AbstractTestQueueProcessor {
+public abstract class AbstractQueueProcessorTest {
     protected StockService stockService;
     protected QueueProcessor queueProcessor;
 
