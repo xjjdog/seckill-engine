@@ -16,10 +16,19 @@ public class Engine {
     StockService stockService;
 
     /**
+     * 获取库存
+     */
+    public Result<Integer> getStock(Target target) {
+        Result<Integer> result = new Result<Integer>();
+        result.setE(stockService.stockNumber(target));
+        return result;
+    }
+
+    /**
      * 售卖动作
      */
-    public Result sell(Target target, ActionSell sell) {
-        Result result = new Result();
+    public Result<Void> sell(Target target, ActionSell sell) {
+        Result<Void> result = new Result<Void>();
 
         long current = System.currentTimeMillis();
         //判断是否是lazy，如果是，则首先加载内容
