@@ -11,6 +11,10 @@ import java.util.concurrent.TimeUnit;
 
 @Slf4j
 public class QeueProcessorJvm extends QueueProcessor {
+
+    /**
+     * 注意是无界队列。队列的长度是在target设置。
+     */
     private LinkedBlockingQueue queue;
 
 

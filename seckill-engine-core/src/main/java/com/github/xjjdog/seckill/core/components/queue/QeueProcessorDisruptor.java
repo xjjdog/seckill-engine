@@ -66,6 +66,6 @@ public class QeueProcessorDisruptor extends QueueProcessor {
 
     @Override
     public void consumer() throws Exception {
-        log.debug("is use the ring buffer system");
+        log.debug("NOOP:is using the ring buffer system");
     }
 }

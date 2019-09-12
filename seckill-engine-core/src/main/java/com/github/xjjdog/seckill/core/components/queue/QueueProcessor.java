@@ -10,9 +10,25 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Slf4j
 public abstract class QueueProcessor {
+    /**
+     * Key是targetID <br/>
+     * Value是targetID对应队列的长度。每一个target都有独立的控制器，都有自己的限制长度，就是在这里控制
+     */
     private Map<String, AtomicInteger> queueStorage = new ConcurrentHashMap<>();
+
+    /**
+     * 使用volatile关键字来控制线程启动关闭，这是一贯作风
+     */
     protected volatile boolean running = false;
 
+    /**
+     * 注意其中的counter变量。对于atomic本身来说是原子的，但是加上null判断，可能就不是了。所以putIfAbsent方法很重要
+     *
+     * @param target
+     * @param sell
+     * @return
+     * @throws Exception
+     */
     public boolean producer(Target target, ActionSell sell) throws Exception {
         String id = target.getId();
         AtomicInteger counter = queueStorage.get(id);
@@ -25,6 +41,7 @@ public abstract class QueueProcessor {
                 counter = yes;
             }
         }
+        /*队列长度超出了配置长度*/
         if (counter.get() + sell.getCount() > target.getQueueSize()) {
             return false;
         }
@@ -33,6 +50,9 @@ public abstract class QueueProcessor {
         return true;
     }
 
+    /**
+     * 与thread类似。start方法只允许调用一次
+     */
     public void start() {
         if (running) {
             throw new RuntimeException("can not start it twice");
