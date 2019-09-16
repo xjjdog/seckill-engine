@@ -152,4 +152,51 @@ swagger:
   base-path: /**
   exclude-path: /error, /ops/**
 
-
+shiro:
+  enabled: true
+  annotations:
+    enabled: true
+  session:
+    globalSessionTimeout: 172800000
+    validation:
+      interval: 1800000
+  active:
+    session:
+      cacheName: activeSessionCache
+  uid:
+    cookie:
+      name: uid
+      domain:
+      path: /
+      httpOnly: true
+      maxAge: -1
+    rememeberMe:
+      cookie:
+        name: rememberMe
+        maxAge: 172800000
+        base64:
+          cipherKey: 4AvVhmFLUs0KTA3Kprsdag
+  login:
+    url: /login
+  logout:
+    url: /login?logout=1
+  user:
+    notfound:
+      url: /login?notfound=1
+    blocked:
+      url: /login?blocked=1
+    unknown:
+      error:
+        url: /login?unknown=1
+  unauthorized:
+    url: /error/401
+  default:
+    success:
+      url: /static/index.html
+    admin:
+      success:
+        url: /center
+  jcaptcha:
+    enable: false
+    error:
+      url: /login?jcaptchaError=1

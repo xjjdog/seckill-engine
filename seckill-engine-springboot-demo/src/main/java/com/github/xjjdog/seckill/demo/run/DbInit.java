@@ -19,12 +19,15 @@ public class DbInit implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        String init_db = "CREATE TABLE exec_err (id varchar(64) PRIMARY KEY NOT NULL,pid varchar(64) NOT NULL,dbname varchar(255) NOT NULL,content varchar(20971520) NOT NULL,status varchar(1) NOT NULL,affectrow int(11) DEFAULT 0,orderno bigint(20) DEFAULT 0,remark varchar(4096) NOT NULL,createdate datetime NOT NULL,modifyDate datetime NOT NULL);CREATE INDEX IDX_EXEC_CREATETIME ON exec_err(createdate);CREATE INDEX IDX_EXEC_PID ON exec_err(pid);";
+        String init_db = "CREATE TABLE sys_user (id bigint(64) NOT NULL auto_increment,account varchar(64) NOT NULL,passwd varchar(128) NOT NULL,salt varchar(32) NOT NULL,name varchar(32) NOT NULL,email varchar(64),phone varchar(32),roleid varchar(32) ,status varchar(1) NOT NULL, createdate datetime ,modifyDate datetime,PRIMARY KEY (`id`) );INSERT INTO sys_user (id, account, passwd, salt, name, email, phone, roleid, status, createdate, modifyDate) VALUES ('1', 'xjjdog', '$2a$05$RHa4AOqIrdUZxr6I10nyKOQdrPCjqEVJumINBqqxMmisAu3h/10HK', '$2a$05$RHa4AOqIrdUZxr6I10nyKO', 'admin', 'admin@admin.com', '13000000000', 'admin', '1', NULL, NULL);";
+
+
+
         try (Connection connection = dataSource.getConnection();
              Statement statement = connection.createStatement()) {
             statement.execute(init_db);
         } catch (SQLException e) {
-            log.error("h2 table already exist");
+            log.error("h2 table already exist",e);
         }
 
     }
