@@ -14,4 +14,10 @@ public class ActionSell {
      * 对象产生时时间戳
      */
     long createTime = System.currentTimeMillis();
+
+
+    /**
+     * 购买的对象
+     */
+    Actor actor;
 }

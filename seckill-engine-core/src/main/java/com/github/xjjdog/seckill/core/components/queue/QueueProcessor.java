@@ -22,6 +22,18 @@ public abstract class QueueProcessor {
     protected volatile boolean running = false;
 
     /**
+     * 判断队列是否满了
+     */
+    public boolean isFull(Target target) {
+        String id = target.getId();
+        AtomicInteger counter = queueStorage.get(id);
+        if (null == counter) {
+            return false;
+        }
+        return counter.get() >= target.getQueueSize();
+    }
+
+    /**
      * 注意其中的counter变量。对于atomic本身来说是原子的，但是加上null判断，可能就不是了。所以putIfAbsent方法很重要
      *
      * @param target

@@ -1,5 +1,6 @@
 package com.github.xjjdog.seckill.core;
 
+import com.github.xjjdog.seckill.core.components.queue.QueueProcessor;
 import com.github.xjjdog.seckill.core.components.stock.StockService;
 import com.github.xjjdog.seckill.core.entity.Result;
 import com.github.xjjdog.seckill.core.entity.ActionSell;
@@ -14,6 +15,15 @@ public class Engine {
      * 专职负责库存
      */
     StockService stockService;
+    /**
+     * 队列提供者
+     */
+    QueueProcessor queueProcessor;
+
+    public Engine() {
+        this.stockService = Holder.getInstance().getStockService();
+        this.queueProcessor = Holder.getInstance().getQueueProcessor();
+    }
 
     /**
      * 获取库存
@@ -95,7 +105,7 @@ public class Engine {
 
 
     boolean onQueue(Target target, ActionSell sell) {
-        return true;
+        return queueProcessor.isFull(target);
     }
 
     boolean onLimit(Target target, ActionSell sell) {
