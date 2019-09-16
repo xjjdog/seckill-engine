@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author xjjdog
+ */
 @Data
 public final class Pre {
     /**
