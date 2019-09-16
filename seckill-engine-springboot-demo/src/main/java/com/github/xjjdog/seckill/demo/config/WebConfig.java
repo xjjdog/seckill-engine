@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.Arrays;
@@ -19,6 +20,18 @@ import java.util.List;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/jslib/**").addResourceLocations("classpath:/static/jslib/").setCachePeriod(1800);
+        registry.addResourceHandler("/styles/**").addResourceLocations("classpath:/static/css/").setCachePeriod(1800);
+        registry.addResourceHandler("/images/**").addResourceLocations("classpath:/static/images/").setCachePeriod(1800);
+        registry.addResourceHandler("/tools/**").addResourceLocations("classpath:/static/tools/").setCachePeriod(1800);
+
+        registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("docs.html").addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+
+    }
 
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache name="cache_sys" updateCheck="false">
+
+    <diskStore path="java.io.tmpdir/ehcache"/>
+
+    
+    <cache name="activeSessionCache"
+           maxEntriesLocalHeap="10000"
+           overflowToDisk="false"
+           eternal="false"
+           diskPersistent="false"
+           timeToLiveSeconds="0"
+           timeToIdleSeconds="0"
+           statistics="true"/>
+
+
+	<defaultCache 
+		maxEntriesLocalHeap="1000"
+		maxElementsInMemory="10000" 
+		eternal="false"
+		timeToIdleSeconds="3600" 
+		timeToLiveSeconds="3600" 
+		overflowToDisk="false"
+		maxElementsOnDisk="100000" 
+		diskPersistent="false"
+		diskExpiryThreadIntervalSeconds="120" 
+		memoryStoreEvictionPolicy="LRU" />
+ 
+
+		
+	<cache name="userCache"   		
+		maxElementsInMemory="1000"
+		maxElementsOnDisk="9999"
+		eternal="false"
+		overflowToDisk="true"
+		timeToIdleSeconds="3600" 
+		timeToLiveSeconds="3600" 
+  		diskPersistent="false"
+		diskExpiryThreadIntervalSeconds="120" 
+    	memoryStoreEvictionPolicy="LRU"  
+		/>
+
+
+
+	<!-- 默认缓存 -->
+	<cache name="DefaultRegion"   		
+		maxElementsInMemory="1000"
+		maxElementsOnDisk="1500"
+		eternal="true"
+		overflowToDisk="true"
+		memoryStoreEvictionPolicy="LRU" />	
+		
+
+
+</ehcache>

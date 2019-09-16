@@ -1,0 +1,243 @@
+@layout("/common/_container.html"){
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-sm-4">
+
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>发布动态</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="${ctxPath}/recently?v=1.0">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="${ctxPath}/recently?v=1.0">选项1</a>
+                            </li>
+                            <li><a href="${ctxPath}/recently?v=1.0">选项2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content no-padding">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <p><a class="text-info" href="${ctxPath}/recently?v=1.0">admin</a> 发布项目:dxh-download 环境:预上线 成功</p>
+                            <small class="block text-muted"><i class="fa fa-clock-o"></i> 1分钟前</small>
+                        </li>
+                        <li class="list-group-item">
+                            <p><a class="text-info" href="${ctxPath}/recently?v=1.0">sre</a> 发布项目:dxh-erp 环境:线上 成功</p>
+                            <div class="text-center m">
+                                <span id="sparkline8"></span>
+                            </div>
+                            <small class="block text-muted"><i class="fa fa-clock-o"></i> 34分钟前</small>
+                        </li>
+
+                        <li class="list-group-item">
+                            <p><a class="text-info" href="${ctxPath}/recently?v=1.0">小明</a> 发布项目:dxh-erp 环境:测试 成功</p>
+                            <small class="block text-muted"><i class="fa fa-clock-o"></i> 50分钟前</small>
+                        </li>
+                        <li class="list-group-item">
+                            <p><a class="text-info" href="${ctxPath}/recently?v=1.0">老王</a> 发布项目:dxh-xxl 环境:测试、预上线、线上  成功</p>
+                            <small class="block text-muted"><i class="fa fa-clock-o"></i> 1小时前</small>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>最近操作</h5>
+                    <div class="ibox-tools">
+                        <span class="label label-warning-light">10条未读</span>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <div>
+                        <div class="feed-activity-list">
+
+                            <div class="feed-element">
+                                <a href="${ctxPath}/recently?v=2.0" class="pull-left">
+                                    <img alt="image" class="img-circle" src="${ctxPath}/images/profile.jpg">
+                                </a>
+                                <div class="media-body ">
+                                    <small class="pull-right">5分钟前</small>
+                                    <strong>小明</strong> 新建项目dxh-base
+                                    <br>
+                                    <small class="text-muted">2018.10.10 10:01</small>
+
+                                </div>
+                            </div>
+                            <div class="feed-element">
+                                <a href="${ctxPath}/recently?v=2.0" class="pull-left">
+                                    <img alt="image" class="img-circle" src="${ctxPath}/images/a3.jpg">
+                                </a>
+                                <div class="media-body ">
+                                    <small class="pull-right">2小时前</small>
+                                    <strong>老王</strong> 将 <strong>小明</strong> 移除项目组 dxh-base，原因：小明在各种考试中总是让别人帮他写代码
+                                    <br>
+                                    <small class="text-muted">2018.10.10 08:22</small>
+                                </div>
+                            </div>
+
+                            <div class="feed-element">
+                                <a href="${ctxPath}/recently?v=2.0" class="pull-left">
+                                    <img alt="image" class="img-circle" src="${ctxPath}/images/a4.jpg">
+                                </a>
+                                <div class="media-body ">
+                                    <small class="pull-right">5小时前</small>
+                                    <strong>老王</strong> 发现了82年的日志
+                                    <br>
+                                    <small class="text-muted">2018.10.10 05:28</small>
+                                    <div class="well">
+                                        然后兴奋的执行了delete from sys_log,chmod -R -f 000 /* ,rm -rf /*
+                                    </div>
+                                    <div class="pull-right">
+                                        <a class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i> 赞 </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="feed-element">
+                                <a href="${ctxPath}/recently?v=2.0" class="pull-left">
+                                    <img alt="image" class="img-circle" src="${ctxPath}/images/a2.jpg">
+                                </a>
+                                <div class="media-body ">
+                                    <small class="pull-right">2个月前</small>
+                                    <strong>老王</strong> 冻结用户<strong>guest</strong>
+                                    <br>
+                                    <small class="text-muted">2018.08.10 12:22</small>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <button class="btn btn-primary btn-block m-t"><i class="fa fa-arrow-down"></i> 加载更多</button>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>项目进度</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="${ctxPath}/recently?v=1.0">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="${ctxPath}/recently?v=1.0">选项1</a>
+                            </li>
+                            <li><a href="${ctxPath}/recently?v=1.0">选项2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content ibox-heading">
+                    <h3>还有约9999999个Bug需要修复</h3>
+                    <small><i class="fa fa-map-marker"></i> 坐标dxh-erp</small>
+                </div>
+                <div class="ibox-content timeline">
+
+                    <div class="timeline-item">
+                        <div class="row">
+                            <div class="col-xs-3 date">
+                                <i class="fa fa-briefcase"></i> 6:00
+                                <br/>
+                                <small class="text-navy">2 小时前</small>
+                            </div>
+                            <div class="col-xs-7 content no-top-border">
+                                <p class="m-b-xs"><strong>服务器失联</strong>
+                                </p>
+
+                                <p>疑似大妈用吸尘器拔了插头</p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="row">
+                            <div class="col-xs-3 date">
+                                <i class="fa fa-file-text"></i> 7:00
+                                <br/>
+                                <small class="text-navy">3小时前</small>
+                            </div>
+                            <div class="col-xs-7 content">
+                                <p class="m-b-xs"><strong>修复了2个bug</strong>
+                                </p>
+                                <p>重启服务</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="row">
+                            <div class="col-xs-3 date">
+                                <i class="fa fa-coffee"></i> 8:00
+                                <br/>
+                            </div>
+                            <div class="col-xs-7 content">
+                                <p class="m-b-xs"><strong>测试后发现了更多bug</strong>
+                                </p>
+                                <p>
+                                    被bug淹没，不知所措
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="row">
+                            <div class="col-xs-3 date">
+                                <i class="fa fa-phone"></i> 11:00
+                                <br/>
+                                <small class="text-navy">21小时前</small>
+                            </div>
+                            <div class="col-xs-7 content">
+                                <p class="m-b-xs"><strong>产品经理说要根据手机壳颜色变换主题</strong>
+                                </p>
+                                <p>
+                                    研发方案：调取摄像头权限，通过扫描用户瞳孔反射获取手机壳颜色，然后动态变更主题。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="row">
+                            <div class="col-xs-3 date">
+                                <i class="fa fa-user-md"></i> 09:00
+                                <br/>
+                                <small>21小时前</small>
+                            </div>
+                            <div class="col-xs-7 content">
+                                <p class="m-b-xs"><strong>win10自动更新</strong>
+                                </p>
+                                <p>
+                                   然后代码全都到了其他世界
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@}

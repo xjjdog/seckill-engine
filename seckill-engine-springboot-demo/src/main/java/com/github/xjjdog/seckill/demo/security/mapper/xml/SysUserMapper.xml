@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.xjjdog.seckill.demo.security.mapper.SysUserMapper">
+    <resultMap id="BaseResultMap" type="com.github.xjjdog.seckill.demo.security.entity.SysUserDO">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="account" jdbcType="VARCHAR" property="account"/>
+        <result column="passwd" jdbcType="VARCHAR" property="passwd"/>
+        <result column="salt" jdbcType="VARCHAR" property="salt"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="roleid" jdbcType="VARCHAR" property="roleid"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="createDate" jdbcType="TIMESTAMP" property="createDate"/>
+        <result column="modifyDate" jdbcType="TIMESTAMP" property="modifyDate"/>
+    </resultMap>
+
+    <select id="getByAccount" resultType="com.github.xjjdog.seckill.demo.security.model.SysUser">
+        SELECT id,account,password,salt,name,birthday,sex,email,phone,roleid,deptid,status,makercode,maker,madetime,modicode,modifier,moditime
+        FROM sys_user
+        WHERE account=#{account}
+    </select>
+
+    <!--<select id="getUsers" resultType="com.dxh.deploy.security.model.SysUserVO">
+        SELECT u.*,d.simplename'deptname',
+        (SELECT GROUP_CONCAT(name SEPARATOR ',') FROM sys_role WHERE  FIND_IN_SET(id,u.roleid) )'rolename'
+        FROM sys_user u INNER JOIN sys_dept d ON u.deptid=d.id
+        WHERE u.status != 3
+        <if test="userSearch.name != null and userSearch.name != ''">
+            AND (u.phone LIKE CONCAT('%',#{userSearch.name},'%')
+            OR u.account LIKE CONCAT('%',#{userSearch.name},'%')
+            OR u.name LIKE CONCAT('%',#{userSearch.name},'%'))
+        </if>
+        <if test="userSearch.deptid != null and userSearch.deptid != 0">
+            AND (u.deptid = #{userSearch.deptid} OR u.deptid IN ( SELECT id FROM sys_dept WHERE pids LIKE CONCAT('%[', #{userSearch.deptid}, ']%') ))
+        </if>
+        <if test="userSearch.beginTime != null and userSearch.beginTime != '' and userSearch.endTime != null and userSearch.endTime != ''">
+            AND (u.createTime BETWEEN CONCAT(#{userSearch.beginTime},' 00:00:00') AND CONCAT(#{userSearch.endTime},' 23:59:59'))
+        </if>
+    </select>-->
+
+  <!--  <select id="getByEmail" resultType="com.dxh.deploy.security.model.SysUserVO">
+        SELECT id,account,name,sex,email,phone
+        FROM sys_user
+        WHERE status = 1 AND  email LIKE CONCAT('%',#{email},'%')
+    </select>-->
+
+
+    <select id="getUserEmail" resultType="String">
+        SELECT email
+        FROM sys_user
+        WHERE status = 1
+    </select>
+
+    <!--<select id="getAllUser" resultType="com.dxh.deploy.security.model.SysUserVO">
+        SELECT id,account,name,sex,email,phone
+        FROM sys_user
+        WHERE status = 1
+        ORDER BY id ASC
+    </select>-->
+
+
+</mapper>
