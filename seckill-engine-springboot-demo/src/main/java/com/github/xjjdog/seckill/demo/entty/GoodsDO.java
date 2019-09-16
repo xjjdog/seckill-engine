@@ -14,8 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @TableName("sf_goods")
 public class GoodsDO extends IDAutoEntity<GoodsDO> {
-    @TableField("id")
-    private Long id;
+
     @TableField("name")
     private String name;
     @TableField("saleType")

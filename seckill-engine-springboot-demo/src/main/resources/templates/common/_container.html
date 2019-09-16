@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit"/><!-- 让360浏览器默认选择webkit内核 -->
+
+    <!-- 全局css -->
+    <link rel="shortcut icon" href="${ctxPath}/static/favicon.ico">
+    <link href="${ctxPath}/tools/inspinia/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="${ctxPath}/tools/inspinia/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+
+    <link href="${ctxPath}/tools/chosen/chosen.min.css" rel="stylesheet">
+    <link href="${ctxPath}/tools/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="${ctxPath}/tools/validate/bootstrapValidator.min.css" rel="stylesheet">
+
+    <link href="${ctxPath}/tools/inspinia/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="${ctxPath}/styles/_fstyle.css" rel="stylesheet">
+
+    <link href="${ctxPath}/tools/iCheck/custom.css" rel="stylesheet">
+    <link href="${ctxPath}/tools/webuploader/webuploader.css" rel="stylesheet">
+    <link href="${ctxPath}/tools/ztree/zTreeStyle.css" rel="stylesheet">
+    <link href="${ctxPath}/tools/bootstrap-treetable/bootstrap-treetable.css" rel="stylesheet"/>
+    <!-- <link href="${ctxPath}/static/css/plugins/ztree/demo.css" rel="stylesheet"> -->
+
+    <!-- 全局js -->
+    <script src="${ctxPath}/tools/inspinia/js/jquery.min.js?v=2.1.4"></script>
+    <script src="${ctxPath}/tools/inspinia/js/bootstrap.min.js?v=3.3.6"></script>
+
+    <script src="${ctxPath}/tools/ztree/jquery.ztree.all.min.js"></script>
+    <script src="${ctxPath}/tools/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="${ctxPath}/tools/validate/bootstrapValidator.min.js"></script>
+    <script src="${ctxPath}/tools/validate/zh_CN.js"></script>
+    <script src="${ctxPath}/tools/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+    <script src="${ctxPath}/tools/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="${ctxPath}/tools/bootstrap-treetable/bootstrap-treetable.js"></script>
+
+    <script src="${ctxPath}/tools/layer/layer.js"></script>
+    <script src="${ctxPath}/tools/chosen/chosen.jquery.js"></script>
+    <script src="${ctxPath}/tools/iCheck/icheck.min.js"></script>
+    <script src="${ctxPath}/tools/laydate/laydate.js"></script>
+    <script src="${ctxPath}/tools/webuploader/webuploader.min.js"></script>
+
+    <script src="${ctxPath}/jslib/common/ajax-object.js"></script>
+    <script src="${ctxPath}/jslib/common/bootstrap-table-object.js"></script>
+    <script src="${ctxPath}/jslib/common/tree-table-object.js"></script>
+    <script src="${ctxPath}/jslib/common/web-upload-object.js"></script>
+    <script src="${ctxPath}/jslib/common/ztree-object.js"></script>
+    <script src="${ctxPath}/jslib/common/Feng.js"></script>
+
+    <style type="text/css">
+        table{  
+            width:100px;  
+            table-layout:fixed;/* 只有定义了表格的布局算法为fixed，下面td的定义才能起作用。 */  
+        }
+        td{  
+            width:100%;  
+            word-break:keep-all;/* 不换行 */  
+            white-space:nowrap;/* 不换行 */  
+            overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */  
+            text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用*/  
+        }
+    </style>
+
+    <script type="text/javascript">
+        Feng.addCtx("${ctxPath}");
+        Feng.sessionTimeoutRegistry();
+    </script>
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content">
+    ${layoutContent}
+</div>
+<script src="${ctxPath}/tools/inspinia/js/content.js?v=1.0.0"></script>
+</body>
+</html>
