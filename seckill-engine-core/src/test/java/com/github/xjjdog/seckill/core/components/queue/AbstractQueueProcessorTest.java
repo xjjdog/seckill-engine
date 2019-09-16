@@ -1,39 +1,33 @@
-package com.github.xjjdog.seckill.core.queue;
+package com.github.xjjdog.seckill.core.components.queue;
 
 import com.github.xjjdog.seckill.core.Factory;
-import com.github.xjjdog.seckill.core.components.queue.JvmQueueProcessor;
-import com.github.xjjdog.seckill.core.components.queue.QueueProcessor;
+import com.github.xjjdog.seckill.core.Holder;
 import com.github.xjjdog.seckill.core.components.stock.StockService;
-import com.github.xjjdog.seckill.core.components.stock.StockServiceMock;
 import com.github.xjjdog.seckill.core.entity.ActionSell;
 import com.github.xjjdog.seckill.core.target.Target;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
-public class TestJvmQueueProcessor {
-    static StockService stockService;
-    static QueueProcessor queueProcessor;
+public abstract class AbstractQueueProcessorTest {
+    protected StockService stockService;
+    protected QueueProcessor queueProcessor;
 
-    @BeforeAll
-    public static void start() throws Exception {
-        stockService = new StockServiceMock();
-        queueProcessor = new JvmQueueProcessor(stockService);
-        queueProcessor.start();
-    }
+    protected abstract QueueProcessor getQueueProcessor();
 
-    @AfterAll
-    public static void stop() throws Exception {
-        queueProcessor.stop();
-    }
+    protected abstract StockService getStockService();
 
     @Test
     public void testProducer() throws Exception {
-        Target target = Factory.getTarget();
+
+        stockService = this.getStockService();
+        queueProcessor = this.getQueueProcessor();
+        queueProcessor.start();
+
+
+        Target target = Holder.getInstance().getTargetService().getTarget("1");
         int initStock = Factory.InitStock;
         ActionSell actionSell = new ActionSell();
         actionSell.setCount(10);
@@ -44,8 +38,8 @@ public class TestJvmQueueProcessor {
 
 
         //wait to consumer
-        int stockNumber = stockService.stockNumber(target);
         Thread.sleep(1000);
+        int stockNumber = stockService.stockNumber(target);
         assertEquals(Factory.InitStock - 10, stockNumber);
 
         stockService.cleanup(target);
@@ -56,5 +50,6 @@ public class TestJvmQueueProcessor {
         result = queueProcessor.producer(target, actionSell);
         assertEquals(result, false);
 
+        queueProcessor.stop();
     }
 }

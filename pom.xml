@@ -82,13 +82,12 @@
                 <artifactId>embedded-redis</artifactId>
                 <version>0.6</version>
             </dependency>
+
             <dependency>
-                <groupId>com.github.charithe</groupId>
-                <artifactId>kafka-junit</artifactId>
-                <version>4.1.6</version>
+                <groupId>com.lmax</groupId>
+                <artifactId>disruptor</artifactId>
+                <version>3.4.2</version>
             </dependency>
-
-
 
             <dependency>
                 <groupId>com.google.guava</groupId>
