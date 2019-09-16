@@ -55,7 +55,7 @@ public class SecKillSessionManager extends DefaultWebSessionManager {
         try {
             return super.retrieveSession(sessionKey);
         } catch (UnknownSessionException e) {
-            log.warn("获取shiro session异常",e);
+            log.debug("获取shiro session异常",e);
             return null;
         }
     }

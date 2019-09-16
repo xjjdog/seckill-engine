@@ -16,7 +16,7 @@
     </resultMap>
 
     <select id="getByAccount" resultType="com.github.xjjdog.seckill.demo.security.model.SysUser">
-        SELECT id,account,password,salt,name,birthday,sex,email,phone,roleid,deptid,status,makercode,maker,madetime,modicode,modifier,moditime
+        SELECT id,account,passwd,salt,name,email,phone,roleid,status,createdate,modifyDate
         FROM sys_user
         WHERE account=#{account}
     </select>

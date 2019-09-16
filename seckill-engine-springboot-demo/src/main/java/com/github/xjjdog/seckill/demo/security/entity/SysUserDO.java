@@ -11,7 +11,7 @@ import java.util.Date;
  * 用户表
  */
 @Data
-@TableName("sys_user")
+@TableName(" ")
 public class SysUserDO extends IDAutoEntity<SysUserDO> {
 
 

@@ -28,7 +28,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserDO> im
         if ((StringUtils.isEmpty(username)) || (username.length() < 4) || (username.length() > 60)) {
             throw new UserNotExistsException();
         }
-        if ((StringUtils.isEmpty(password)) || (password.length() < 6) || (password.length() > 20)) {
+        if ((StringUtils.isEmpty(password)) || (password.length() < 4) || (password.length() > 20)) {
             throw new UserPasswordNotMatchException();
         }
         SysUser user = null;
